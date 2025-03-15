@@ -50,6 +50,19 @@ final class UserDataManager {
         }
     }
     
+    // 전체 데이터 읽기
+    func readAllUsers() -> [User] {
+        let fetchRequest = User.fetchRequest()
+
+        do {
+            let result = try self.container.viewContext.fetch(fetchRequest)
+            return result
+        } catch {
+            print("모든 유저 데이터 읽기 실패: \(error)")
+            return []
+        }
+    }
+    
     // 데이터 단일 삭제
     func deleteData(email: String) {
         let fetchRequest = User.fetchRequest()

@@ -15,4 +15,8 @@ extension UIButton {
     func setCornerRadius() {
         layer.cornerRadius = 24
     }
+     
+    func setHeight() {
+        heightAnchor.constraint(equalToConstant: 48).isActive = true
+    }
 }

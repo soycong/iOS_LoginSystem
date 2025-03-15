@@ -41,7 +41,7 @@ final class SignUpView: UIView {
         
         button.setTitle("회원가입하기", for: .normal)
         button.setTitleColor(.sub, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.setButtonBackgroundColor()
         

@@ -17,7 +17,7 @@ final class UserProfileView: UIView {
         let label = UILabel()
         
         label.text = "\(nickname)님 환영합니다!"
-        label.font = UIFont.systemFont(ofSize: 20, weight: .semibold)
+        label.font = .systemFont(ofSize: 20, weight: .semibold)
         
         return label
     }()
@@ -26,7 +26,7 @@ final class UserProfileView: UIView {
         let label = UILabel()
         
         label.text = "\(email)"
-        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.font = .systemFont(ofSize: 16, weight: .regular)
         label.textColor = .gray
         
         return label

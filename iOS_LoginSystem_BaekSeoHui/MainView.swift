@@ -17,7 +17,7 @@ final class MainView: UIView {
         
         button.setTitle("로그아웃", for: .normal)
         button.setTitleColor(.sub, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.setButtonBackgroundColor()
         button.setHeight()

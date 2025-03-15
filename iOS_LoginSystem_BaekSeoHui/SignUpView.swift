@@ -31,17 +31,17 @@ final class SignUpView: UIView {
         return label
     }()
     
-    private let userEmailTextField = SignUpTextField(type: .email)
-    private let userPasswordTextField = SignUpTextField(type: .password)
-    private let userConfirmPasswordTextField = SignUpTextField(type: .confirmPassword)
-    private let userNicknameTextField = SignUpTextField(type: .nickname)
+    private let userEmailTextField = UserDataTextField(type: .email)
+    private let userPasswordTextField = UserDataTextField(type: .password)
+    private let userConfirmPasswordTextField = UserDataTextField(type: .confirmPassword)
+    private let userNicknameTextField = UserDataTextField(type: .nickname)
     
     private var signUpButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("회원가입하기", for: .normal)
         button.setTitleColor(.sub, for: .normal)
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+        button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.setButtonBackgroundColor()
         

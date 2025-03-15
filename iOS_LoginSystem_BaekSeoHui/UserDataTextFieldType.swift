@@ -5,7 +5,7 @@
 //  Created by seohuibaek on 3/16/25.
 //
 
-enum SignUpFieldType {
+enum UserDataTextFieldType {
     case email
     case password
     case confirmPassword

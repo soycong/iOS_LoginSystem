@@ -7,13 +7,15 @@
 
 import UIKit
 
-class InitialViewController: UIViewController {
+import UIKit
+
+final class InitialViewController: UIViewController {
+    
+    var initialView = InitialView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view = initialView
     }
-
-
 }
-

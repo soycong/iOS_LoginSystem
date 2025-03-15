@@ -8,5 +8,11 @@
 import UIKit
 
 extension UIButton {
+    func setButtonBackgroundColor() {
+        backgroundColor = .main
+    }
     
+    func setCornerRadius() {
+        layer.cornerRadius = 24
+    }
 }

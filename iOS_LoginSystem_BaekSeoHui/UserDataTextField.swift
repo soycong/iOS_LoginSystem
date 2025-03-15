@@ -9,9 +9,9 @@ import UIKit
 
 final class UserDataTextField: UITextField {
     
-    init(type: UserDataTextFieldType) {
+    init(type: UserDataTextFieldType, textFieldBackgroundColor: UIColor = .systemGray5) {
         super.init(frame: .zero)
-        setUpTextField()
+        setUpTextField(textFieldBackgroundColor)
         configureFor(type: type)
     }
     
@@ -19,10 +19,10 @@ final class UserDataTextField: UITextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func setUpTextField() {
-        backgroundColor = .systemGray5
+    private func setUpTextField(_ textFieldBackgroundColor: UIColor) {
+        backgroundColor = textFieldBackgroundColor
         layer.cornerRadius = 24
-        font = UIFont.systemFont(ofSize: 18)
+        font = .systemFont(ofSize: 16)
         leftView = UIView(frame: CGRect(x: 0, y: 0, width: 12, height: 0))
         leftViewMode = .always
         autocorrectionType = .no
@@ -61,7 +61,7 @@ final class UserDataTextField: UITextField {
     private func setUpLeftIcon(systemName: String) {
         let iconImage = UIImage(systemName: systemName)
         let iconImageView = UIImageView(image: iconImage)
-        iconImageView.tintColor = .darkGray
+        iconImageView.tintColor = .systemGray3
         iconImageView.contentMode = .scaleAspectFit
         
         let iconSize: CGFloat = 20

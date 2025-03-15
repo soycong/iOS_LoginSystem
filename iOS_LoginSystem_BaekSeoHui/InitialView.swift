@@ -10,6 +10,7 @@ import SnapKit
 
 final class InitialView: UIView {
     
+    // 로그인 부분 삭제하기
     private let titleLabel: UILabel = {
         let label = UILabel()
         
@@ -24,7 +25,7 @@ final class InitialView: UIView {
     private let userEmailTextField = UserDataTextField(type: .email, textFieldBackgroundColor: .sub)
     private let userPasswordTextField = UserDataTextField(type: .password, textFieldBackgroundColor: .sub)
     
-    private var startButton: UIButton = {
+    var startButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("시작하기", for: .normal)

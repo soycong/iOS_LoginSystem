@@ -7,9 +7,9 @@
 
 import UIKit
 
-final class SignUpTextField: UITextField {
+final class UserDataTextField: UITextField {
     
-    init(type: SignUpFieldType) {
+    init(type: UserDataTextFieldType) {
         super.init(frame: .zero)
         setUpTextField()
         configureFor(type: type)
@@ -31,7 +31,7 @@ final class SignUpTextField: UITextField {
         heightAnchor.constraint(equalToConstant: 48).isActive = true
     }
     
-    private func configureFor(type: SignUpFieldType) {
+    private func configureFor(type: UserDataTextFieldType) {
         switch type {
         case .email:
             placeholder = "이메일을 입력하세요."

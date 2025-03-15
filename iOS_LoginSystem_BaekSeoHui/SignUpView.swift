@@ -31,10 +31,10 @@ final class SignUpView: UIView {
         return label
     }()
     
-    private let userEmailTextField = SignUpTextField(type: .email)
-    private let userPasswordTextField = SignUpTextField(type: .password)
-    private let userConfirmPasswordTextField = SignUpTextField(type: .confirmPassword)
-    private let userNicknameTextField = SignUpTextField(type: .nickname)
+    private let userEmailTextField = UserDataTextField(type: .email)
+    private let userPasswordTextField = UserDataTextField(type: .password)
+    private let userConfirmPasswordTextField = UserDataTextField(type: .confirmPassword)
+    private let userNicknameTextField = UserDataTextField(type: .nickname)
     
     private var signUpButton: UIButton = {
         let button = UIButton()

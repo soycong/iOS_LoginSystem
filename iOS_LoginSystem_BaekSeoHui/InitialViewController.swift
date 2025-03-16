@@ -17,9 +17,7 @@ final class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         view = initialView
-        
         bind()
     }
     

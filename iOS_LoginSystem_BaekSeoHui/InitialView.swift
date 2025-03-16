@@ -9,22 +9,7 @@ import UIKit
 import SnapKit
 
 final class InitialView: UIView {
-    
-    // 로그인 부분 삭제하기
-    private let titleLabel: UILabel = {
-        let label = UILabel()
-        
-        label.text = "로그인"
-        label.textColor = .sub
-        label.textAlignment = .left
-        label.font = .systemFont(ofSize: 30, weight: .black)
-        
-        return label
-    }()
-    
-    private let userEmailTextField = UserDataTextField(type: .email, textFieldBackgroundColor: .sub)
-    private let userPasswordTextField = UserDataTextField(type: .password, textFieldBackgroundColor: .sub)
-    
+
     var startButton: UIButton = {
         let button = UIButton()
         
@@ -38,23 +23,9 @@ final class InitialView: UIView {
         return button
     }()
     
-    private lazy var verticalStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel,
-                                                       userEmailTextField,
-                                                       userPasswordTextField,
-                                                       startButton])
-        stackView.axis = .vertical
-        stackView.spacing = 16
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        
-        return stackView
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .main
-        
         configureUI()
     }
     
@@ -63,9 +34,9 @@ final class InitialView: UIView {
     }
     
     private func configureUI() {
-        addSubview(verticalStackView)
+        addSubview(startButton)
         
-        verticalStackView.snp.makeConstraints { make in
+        startButton.snp.makeConstraints { make in
             make.horizontalEdges.equalTo(safeAreaLayoutGuide).inset(16)
             make.centerX.centerY.equalToSuperview()
         }

@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// 회원가입 화면
 final class SignUpViewController: UIViewController {
     private let signUpView = SignUpView()
     private let viewModel = SignUpViewModel()
@@ -22,6 +23,7 @@ final class SignUpViewController: UIViewController {
     }
     
     private func bind() {
+        // 입력 필드
         signUpView.emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailInput)
             .disposed(by: disposeBag)
@@ -38,6 +40,7 @@ final class SignUpViewController: UIViewController {
             .bind(to: viewModel.nicknameInput)
             .disposed(by: disposeBag)
         
+        // 버튼
         signUpView.signUpButton.rx.tap
             .bind(to: viewModel.signUpButtonTapped)
             .disposed(by: disposeBag)
@@ -59,6 +62,7 @@ final class SignUpViewController: UIViewController {
             })
             .disposed(by: disposeBag)
         
+        // 화면 닫기
         viewModel.dismissSignUpView
             .subscribe(onNext: { [weak self] in
                 self?.dismiss(animated: true)
@@ -66,10 +70,12 @@ final class SignUpViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    // 다음 화면 이동
     private func toNextView(userEmail: String) {
-        if userEmail.isEmpty { // 저장된 사용자가 없을 경우
+        if userEmail.isEmpty { // 저장된 사용자가 없을 경우 -> 알림창
             let error = NSError(domain: "회원가입 오류", code: 100, userInfo: [NSLocalizedDescriptionKey: "유효한 이메일 정보가 없습니다."])
             showAlert(error)
+            
         } else { // 저장된 사용자가 있을 경우
             let mainViewController = MainViewController(email: userEmail)
             
@@ -78,6 +84,7 @@ final class SignUpViewController: UIViewController {
         }
     }
     
+    // 텍스트필드 오류 알림 표시
     private func showAlert(_ error: Error) {
         let alert = UIAlertController(
             title: "회원가입 실패",
@@ -89,6 +96,7 @@ final class SignUpViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    // 화면 터치 시 키보드 제거
     private func setupKeyboardGesture() {
         let tapGesture = UITapGestureRecognizer()
         view.addGestureRecognizer(tapGesture)

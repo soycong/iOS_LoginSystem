@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+/// 사용자 프로필 정보 뷰
 final class UserProfileView: UIView {
     
     private var nickname: String

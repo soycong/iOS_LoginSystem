@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// 앱 최초 진입 화면
 final class InitialViewController: UIViewController {
     
     private let initialView = InitialView()
@@ -40,8 +41,8 @@ final class InitialViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+    // 화면 전환 처리
     private func toNextView(userEmail: String = "") {
-        
         if userEmail.isEmpty { // 저장된 사용자가 없을 경우
             let signUpViewController = SignUpViewController()
             

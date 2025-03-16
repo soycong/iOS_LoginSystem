@@ -9,6 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+/// 로그인 성공 화면
 final class MainViewController: UIViewController {
     private var mainView: MainView!
     private let viewModel: MainViewModel
@@ -29,6 +30,7 @@ final class MainViewController: UIViewController {
         bind()
     }
     
+    // 사용자 프로필 화면 설정
     private func configureProfieView() {
         viewModel.userProfile
             .take(1)
@@ -67,6 +69,7 @@ final class MainViewController: UIViewController {
             .disposed(by: disposeBag)
     }
     
+    /// 초기 화면으로 이동
     private func toInitialView() {
         let initialViewController = InitialViewController()
         

@@ -15,6 +15,7 @@ final class InitialView: UIView {
         
         button.setTitle("시작하기", for: .normal)
         button.setTitleColor(.main, for: .normal)
+        button.setTitleColor(.main.withAlphaComponent(0.6), for: .highlighted)
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.backgroundColor = .sub

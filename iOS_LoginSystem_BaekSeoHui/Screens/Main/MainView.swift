@@ -23,6 +23,7 @@ final class MainView: UIView {
         
         button.setTitle("로그아웃", for: .normal)
         button.setTitleColor(.sub, for: .normal)
+        button.setTitleColor(.sub.withAlphaComponent(0.6), for: .highlighted)
         button.titleLabel?.font = .boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.setButtonBackgroundColor()
@@ -36,6 +37,7 @@ final class MainView: UIView {
         
         button.setTitle("회원탈퇴", for: .normal)
         button.setTitleColor(.sub, for: .normal)
+        button.setTitleColor(.sub.withAlphaComponent(0.6), for: .highlighted)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         button.setCornerRadius()
         button.setButtonBackgroundColor()

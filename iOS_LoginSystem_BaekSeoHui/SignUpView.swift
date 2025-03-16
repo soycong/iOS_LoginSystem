@@ -10,10 +10,10 @@ import SnapKit
 
 final class SignUpView: UIView {
     
-    private let backButton: UIButton = {
+    let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         
-        let image = UIImage(systemName: "chevron.left")
+        let image = UIImage(systemName: "xmark")
         button.setImage(image, for: .normal)
         button.tintColor = .black
         
@@ -26,7 +26,7 @@ final class SignUpView: UIView {
         label.text = "회원가입"
         label.textColor = .main
         label.textAlignment = .left
-        label.font = .boldSystemFont(ofSize: 24)
+        label.font = .systemFont(ofSize: 30, weight: .black)
         
         return label
     }()
@@ -36,7 +36,7 @@ final class SignUpView: UIView {
     private let userConfirmPasswordTextField = UserDataTextField(type: .confirmPassword)
     private let userNicknameTextField = UserDataTextField(type: .nickname)
     
-    private var signUpButton: UIButton = {
+    var signUpButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("회원가입하기", for: .normal)
@@ -63,6 +63,11 @@ final class SignUpView: UIView {
         return stackView
     }()
     
+    var emailTextField: UITextField { return userEmailTextField }
+    var passwordTextField: UITextField { return userPasswordTextField }
+    var confirmPasswordTextField: UITextField { return userConfirmPasswordTextField }
+    var nicknameTextField: UITextField { return userNicknameTextField }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .sub
@@ -75,10 +80,10 @@ final class SignUpView: UIView {
     }
     
     private func configureUI() {
-        addSubview(backButton)
+        addSubview(dismissButton)
         addSubview(verticalStackView)
         
-        backButton.snp.makeConstraints { make in
+        dismissButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().inset(16)
             make.top.equalTo(safeAreaLayoutGuide)
         }
@@ -87,6 +92,5 @@ final class SignUpView: UIView {
             make.horizontalEdges.equalToSuperview().inset(16)
             make.centerX.centerY.equalToSuperview()
         }
-        
     }
 }

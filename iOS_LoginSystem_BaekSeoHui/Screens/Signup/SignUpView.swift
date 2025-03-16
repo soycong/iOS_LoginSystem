@@ -65,6 +65,14 @@ final class SignUpView: UIView {
         return stackView
     }()
     
+    let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.showsVerticalScrollIndicator = false
+        return scrollView
+    }()
+    
+    private let contentView = UIView()
+    
     /// 외부에서 텍스트필드에 접근하기 위한 프로퍼티
     var emailTextField: UITextField { return userEmailTextField }
     var passwordTextField: UITextField { return userPasswordTextField }
@@ -74,6 +82,7 @@ final class SignUpView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         backgroundColor = .sub
+        setupScrollView()
         configureUI()
     }
     
@@ -81,9 +90,24 @@ final class SignUpView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    private func setupScrollView() {
+        addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView)
+            make.centerX.centerY.equalToSuperview()
+        }
+    }
+    
     private func configureUI() {
         addSubview(dismissButton)
-        addSubview(verticalStackView)
+        contentView.addSubview(verticalStackView)
         
         dismissButton.snp.makeConstraints { make in
             make.leading.equalToSuperview()
@@ -93,6 +117,7 @@ final class SignUpView: UIView {
         verticalStackView.snp.makeConstraints { make in
             make.horizontalEdges.equalToSuperview().inset(16)
             make.centerX.centerY.equalToSuperview()
+            make.bottom.lessThanOrEqualToSuperview().inset(20)
         }
     }
 }

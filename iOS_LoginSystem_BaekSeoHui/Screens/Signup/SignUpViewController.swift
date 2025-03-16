@@ -20,6 +20,7 @@ final class SignUpViewController: UIViewController {
         view = signUpView
         bind()
         setupKeyboardGesture()
+        bindKeyboard()
     }
     
     private func bind() {
@@ -106,5 +107,44 @@ final class SignUpViewController: UIViewController {
                 self?.view.endEditing(true)
             })
             .disposed(by: disposeBag)
+    }
+    
+    // 키보드에 텍스트필드가 가리지 않게 스크롤 설정
+    private func bindKeyboard() {
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+            .map { notification -> CGFloat in
+                guard let keyboardFrame = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return 0 }
+                return keyboardFrame.cgRectValue.height
+            }
+            .subscribe(onNext: { [weak self] height in
+                guard let self = self else { return }
+                let bottomInset = height - self.view.safeAreaInsets.bottom
+                self.signUpView.scrollView.contentInset.bottom = bottomInset
+                self.signUpView.scrollView.verticalScrollIndicatorInsets.bottom = bottomInset
+            })
+            .disposed(by: disposeBag)
+        
+        // 키보드 내려갈 때 원래대로 복원
+        NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+                self.signUpView.scrollView.contentInset.bottom = 0
+                self.signUpView.scrollView.verticalScrollIndicatorInsets.bottom = 0
+                self.signUpView.scrollView.setContentOffset(.zero, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        Observable.merge(
+            signUpView.emailTextField.rx.controlEvent(.editingDidBegin).map { self.signUpView.emailTextField },
+            signUpView.passwordTextField.rx.controlEvent(.editingDidBegin).map { self.signUpView.passwordTextField },
+            signUpView.confirmPasswordTextField.rx.controlEvent(.editingDidBegin).map { self.signUpView.confirmPasswordTextField },
+            signUpView.nicknameTextField.rx.controlEvent(.editingDidBegin).map { self.signUpView.nicknameTextField }
+        )
+        .subscribe(onNext: { [weak self] textField in
+            guard let self = self else { return }
+            let rect = textField.convert(textField.bounds, to: self.signUpView.scrollView)
+            self.signUpView.scrollView.scrollRectToVisible(rect, animated: true)
+        })
+        .disposed(by: disposeBag)
     }
 }

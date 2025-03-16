@@ -20,10 +20,10 @@
 
 ## 스크린샷
 <div style="display: flex; justify-content: space-between;">
-    <img width="240" alt="화면 1" src="https://github.com/user-attachments/assets/9d051c46-117e-4452-93cc-38880a14d308">
-    <img width="240" alt="화면 2" src="https://github.com/user-attachments/assets/21c2fee7-ffae-477d-8ff1-dd2f1c672062">
-    <img width="240" alt="화면 3" src="https://github.com/user-attachments/assets/8e50381d-bfa3-43f4-9247-9f86bd3d1f76">
-    <img width="240" alt="화면 4" src="https://github.com/user-attachments/assets/d8a211c3-dd0c-4b57-b5e9-67c5e4d12f02">
+    <img width="200" alt="화면 1" src="https://github.com/user-attachments/assets/9d051c46-117e-4452-93cc-38880a14d308">
+    <img width="200" alt="화면 2" src="https://github.com/user-attachments/assets/21c2fee7-ffae-477d-8ff1-dd2f1c672062">
+    <img width="200" alt="화면 3" src="https://github.com/user-attachments/assets/8e50381d-bfa3-43f4-9247-9f86bd3d1f76">
+    <img width="200" alt="화면 4" src="https://github.com/user-attachments/assets/d8a211c3-dd0c-4b57-b5e9-67c5e4d12f02">
 </div>
 
 ## 구현 내용

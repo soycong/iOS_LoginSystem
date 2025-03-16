@@ -63,6 +63,7 @@ final class MainView: UIView {
         let view = UIView()
         
         view.backgroundColor = .sub
+        view.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
         view.layer.cornerRadius = 24
 
         return view

@@ -45,11 +45,15 @@ final class MainViewController: UIViewController {
     
     private func bind() {
         mainView.logOutButton.rx.tap
-            .bind(to: viewModel.logOutButtonTapped)
+            .subscribe(onNext: { [weak self] in
+                self?.showConfirmationAlert(isLogout: true)
+            })
             .disposed(by: disposeBag)
         
         mainView.deleteAccountButton.rx.tap
-            .bind(to: viewModel.deleteAccountButtonTapped)
+            .subscribe(onNext: { [weak self] in
+                self?.showConfirmationAlert(isLogout: false)
+            })
             .disposed(by: disposeBag)
         
         // 로그아웃 완료
@@ -83,5 +87,31 @@ final class MainViewController: UIViewController {
                               animations: nil,
                               completion: nil)
         }
+    }
+    
+    // 로그아웃, 회원탈퇴 Alert
+    private func showConfirmationAlert(isLogout: Bool) {
+        let title = isLogout ? "로그아웃" : "회원탈퇴"
+        let message = isLogout ? "로그아웃 하시겠습니까?" : "회원탈퇴 하시겠습니까?"
+        let confirmTitle = "확인"
+        
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        
+        alert.addAction(UIAlertAction(title: "취소", style: .cancel))
+        alert.addAction(UIAlertAction(title: confirmTitle, style: .destructive, handler: { [weak self] _ in
+            guard let self = self else { return }
+            
+            if isLogout {
+                self.viewModel.logOutButtonTapped.onNext(())
+            } else {
+                self.viewModel.deleteAccountButtonTapped.onNext(())
+            }
+        }))
+        
+        present(alert, animated: true)
     }
 }

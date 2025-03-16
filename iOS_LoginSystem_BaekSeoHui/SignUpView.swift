@@ -13,8 +13,10 @@ final class SignUpView: UIView {
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         
-        let image = UIImage(systemName: "xmark")
-        button.setImage(image, for: .normal)
+        var config = UIButton.Configuration.plain()
+        config.image = UIImage(systemName: "xmark")
+        config.preferredSymbolConfigurationForImage = UIImage.SymbolConfiguration(pointSize: 22)
+        button.configuration = config
         button.tintColor = .black
         
         return button
@@ -74,7 +76,6 @@ final class SignUpView: UIView {
         configureUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -84,7 +85,7 @@ final class SignUpView: UIView {
         addSubview(verticalStackView)
         
         dismissButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().inset(16)
+            make.leading.equalToSuperview()
             make.top.equalTo(safeAreaLayoutGuide)
         }
         

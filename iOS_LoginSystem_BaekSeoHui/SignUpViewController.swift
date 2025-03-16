@@ -18,6 +18,7 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         view = signUpView
         bind()
+        setupKeyboardGesture()
     }
     
     private func bind() {
@@ -86,5 +87,16 @@ final class SignUpViewController: UIViewController {
         
         alert.addAction(UIAlertAction(title: "확인", style: .default))
         self.present(alert, animated: true)
+    }
+    
+    private func setupKeyboardGesture() {
+        let tapGesture = UITapGestureRecognizer()
+        view.addGestureRecognizer(tapGesture)
+        
+        tapGesture.rx.event
+            .subscribe(onNext: { [weak self] _ in
+                self?.view.endEditing(true)
+            })
+            .disposed(by: disposeBag)
     }
 }

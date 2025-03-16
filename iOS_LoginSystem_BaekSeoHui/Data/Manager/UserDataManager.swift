@@ -16,6 +16,7 @@ final class UserDataManager {
         self.container = appDelegate.persistentContainer
     }
     
+    // 새 사용자 데이터 생성
     func createData(email: String, password: String, nickname: String) {
         guard let entity = NSEntityDescription.entity(forEntityName: User.className, in: self.container.viewContext) else { return }
         

@@ -65,6 +65,7 @@ final class SignUpView: UIView {
         return stackView
     }()
     
+    /// 외부에서 텍스트필드에 접근하기 위한 프로퍼티
     var emailTextField: UITextField { return userEmailTextField }
     var passwordTextField: UITextField { return userPasswordTextField }
     var confirmPasswordTextField: UITextField { return userConfirmPasswordTextField }

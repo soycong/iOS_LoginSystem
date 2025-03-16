@@ -9,8 +9,8 @@ import RxSwift
 import RxCocoa
 
 final class InitialViewModel {
-    let buttonTapped = PublishSubject<Void>()
     
+    let buttonTapped = PublishSubject<Void>()
     let userCheckResult = PublishSubject<(exists: Bool, email: String?)>()
     
     private let userDataManager: UserDataManager
@@ -21,6 +21,7 @@ final class InitialViewModel {
         checkUser()
     }
     
+    // 사용자 존재 여부 확인
     private func checkUser() {
         buttonTapped
             .subscribe(onNext: { [weak self] in

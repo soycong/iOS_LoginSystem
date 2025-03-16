@@ -13,6 +13,7 @@ final class MainView: UIView {
     private let nickname: String
     private let email: String
     
+    // 사용자 프로필 화면
     private(set) lazy var profileView: UserProfileView = {
         return UserProfileView(nickname: self.nickname, email: self.email)
     }()
@@ -55,6 +56,7 @@ final class MainView: UIView {
         return stackView
     }()
     
+    // 하단 배경 뷰
     private let backgroundView: UIView = {
         let view = UIView()
         

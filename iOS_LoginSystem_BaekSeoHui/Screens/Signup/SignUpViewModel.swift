@@ -10,6 +10,7 @@ import RxSwift
 import RxCocoa
 
 final class SignUpViewModel {
+    // 입력
     let emailInput = BehaviorRelay<String>(value: "")
     let passwordInput = BehaviorRelay<String>(value: "")
     let confirmPasswordInput = BehaviorRelay<String>(value: "")
@@ -17,6 +18,7 @@ final class SignUpViewModel {
     let signUpButtonTapped = PublishSubject<Void>()
     let dismissButtonTapped = PublishSubject<Void>()
     
+    // 출력
     let signUpResult = PublishSubject<Result<User, SignUpError>>()
     let dismissSignUpView = PublishSubject<Void>()
     
@@ -25,12 +27,12 @@ final class SignUpViewModel {
     
     init(userDataManager: UserDataManager = UserDataManager()) {
         self.userDataManager = userDataManager
-        
         signUp()
         dismiss()
         
     }
     
+    // 회원가입 처리 로직
     private func processSignUp(email: String, password: String,
                                confirmPassword: String, nickname: String) {
         // 기본 입력 확인
@@ -87,6 +89,7 @@ final class SignUpViewModel {
         return isValidLength && hasValidChars && startsWithLetter
     }
     
+    // 회원가입 버튼 바인딩 설정
     private func signUp() {
         signUpButtonTapped
             .withLatestFrom(Observable.combineLatest(
@@ -100,6 +103,7 @@ final class SignUpViewModel {
             .disposed(by: disposeBag)
     }
     
+    // 화면 닫기 버튼 바인딩 설정
     private func dismiss() {
         dismissButtonTapped
             .subscribe(onNext: { [weak self] in

@@ -9,9 +9,11 @@ import RxSwift
 import RxCocoa
 
 final class MainViewModel {
+    // 입력
     let logOutButtonTapped = PublishSubject<Void>()
     let deleteAccountButtonTapped = PublishSubject<Void>()
     
+    // 출력
     let userProfile: BehaviorRelay<(nickname: String, email: String)>
     let logOutComplete = PublishSubject<Void>()
     let deleteAccountComplete = PublishSubject<Void>()
@@ -30,6 +32,7 @@ final class MainViewModel {
         deleteAccount()
     }
     
+    // 사용자 프로필 조회
     private func readUserProfile() {
         let user = userDataManager.readUserData(email: email)
         userProfile.accept((
@@ -38,12 +41,14 @@ final class MainViewModel {
         ))
     }
     
+    // 로그아웃 처리
     private func logOut() {
         logOutButtonTapped
             .bind(to: logOutComplete)
             .disposed(by: disposeBag)
     }
     
+    // 회원탈퇴 처리
     private func deleteAccount() {
         deleteAccountButtonTapped
             .subscribe(onNext: { [weak self] in

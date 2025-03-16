@@ -7,7 +7,8 @@
 
 import Foundation
 
-enum SignUpError: Error, LocalizedError {
+// 회원가입 진행 중 발생할 수 있는 에라
+enum SignUpError: LocalizedError {
     case emptyFields
     case invalidEmail
     case shortPassword

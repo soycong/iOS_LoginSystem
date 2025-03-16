@@ -7,6 +7,7 @@
 
 import UIKit
 
+// 사용자 데이터 입력용 커스텀 텍스트필드
 final class UserDataTextField: UITextField {
     
     init(type: UserDataTextFieldType, textFieldBackgroundColor: UIColor = .systemGray5) {
@@ -29,6 +30,21 @@ final class UserDataTextField: UITextField {
         autocapitalizationType = .none
         clearButtonMode = .whileEditing
         heightAnchor.constraint(equalToConstant: 48).isActive = true
+    }
+    
+    private func setUpLeftIcon(systemName: String) {
+        let iconImage = UIImage(systemName: systemName)
+        let iconImageView = UIImageView(image: iconImage)
+        iconImageView.tintColor = .systemGray3
+        iconImageView.contentMode = .scaleAspectFit
+        
+        let iconSize: CGFloat = 20
+        iconImageView.frame = CGRect(x: 12, y: 0, width: iconSize, height: iconSize)
+        
+        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: iconSize + 24, height: iconSize))
+        containerView.addSubview(iconImageView)
+        
+        leftView = containerView
     }
     
     private func configureFor(type: UserDataTextFieldType) {
@@ -56,20 +72,5 @@ final class UserDataTextField: UITextField {
             returnKeyType = .done
             setUpLeftIcon(systemName: "person")
         }
-    }
-    
-    private func setUpLeftIcon(systemName: String) {
-        let iconImage = UIImage(systemName: systemName)
-        let iconImageView = UIImageView(image: iconImage)
-        iconImageView.tintColor = .systemGray3
-        iconImageView.contentMode = .scaleAspectFit
-        
-        let iconSize: CGFloat = 20
-        iconImageView.frame = CGRect(x: 12, y: 0, width: iconSize, height: iconSize)
-        
-        let containerView = UIView(frame: CGRect(x: 0, y: 0, width: iconSize + 24, height: iconSize))
-        containerView.addSubview(iconImageView)
-        
-        leftView = containerView
     }
 }

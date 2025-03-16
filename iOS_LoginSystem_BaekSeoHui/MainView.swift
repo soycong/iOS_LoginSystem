@@ -10,9 +10,14 @@ import SnapKit
 
 final class MainView: UIView {
     
-    private let profileView = UserProfileView(nickname: "soy", email: "email")
+    private let nickname: String
+    private let email: String
     
-    private var logOutButton: UIButton = {
+    private(set) lazy var profileView: UserProfileView = {
+        return UserProfileView(nickname: self.nickname, email: self.email)
+    }()
+    
+    private(set) var logOutButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("로그아웃", for: .normal)
@@ -25,7 +30,7 @@ final class MainView: UIView {
         return button
     }()
     
-    private var deleteAccountButton: UIButton = {
+    private(set) var deleteAccountButton: UIButton = {
         let button = UIButton()
         
         button.setTitle("회원탈퇴", for: .normal)
@@ -59,8 +64,11 @@ final class MainView: UIView {
         return view
     }()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(nickname: String, email: String) {
+        self.nickname = nickname
+        self.email = email
+        
+        super.init(frame: .zero)
         backgroundColor = .main
         configureUI()
     }
